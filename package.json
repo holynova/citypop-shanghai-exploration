@@ -1,0 +1,27 @@
+{
+  "name": "citypop-shanghai-exploration",
+  "version": "1.0.0",
+  "description": "A visual archive exploring rough-grain City Pop painting prompts across Shanghai and Beijing.",
+  "main": "index.html",
+  "scripts": {
+    "check": "node --check app.js && node --check data.js",
+    "serve": "python3 -m http.server 4174 --bind 127.0.0.1"
+  },
+  "keywords": [
+    "city-pop",
+    "prompt-archive",
+    "generative-art",
+    "static-site"
+  ],
+  "author": "holynova",
+  "license": "MIT",
+  "homepage": "https://holynova.github.io/citypop-shanghai-exploration/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holynova/citypop-shanghai-exploration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/holynova/citypop-shanghai-exploration/issues"
+  },
+  "type": "commonjs"
+}

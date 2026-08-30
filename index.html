@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111447" />
+    <meta
+      name="description"
+      content="Shanghai Afterglow：一份把上海与北京的 City Pop 绘画、提示词和粗粝印刷规律放在一起的实验档案。"
+    />
+    <title>Shanghai Afterglow — City Pop Prompt Archive</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4"
+      data-domains="holynova.github.io"
+    ></script>
+    <script src="data.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <!-- THESIS: Make the image the protagonist and let each prompt read like a studio hypothesis.
+         OWN-WORLD: A nocturnal City Pop proof wall: cobalt ink, violet sky, coral signal, paper-white notes.
+         STORY: Fixed city viewpoints → rougher mark-making → borrowed tropical resort grammar.
+         FIRST VIEWPORT: Name the experiment, show one decisive output, and expose the archive's scale.
+         FORM: Editorial studio wall with uneven image plates, short labels, and a prompt drawer.
+         FINISH: Print residue, strong focus states, no decorative noise that competes with the artwork. -->
+    <a class="skip-link" href="#gallery">跳到作品墙</a>
+
+    <div class="page-shell" id="top">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Shanghai Afterglow 首页">
+          <span class="brand-mark" aria-hidden="true">SA</span>
+          <span class="brand-copy">
+            <span class="brand-name">Shanghai Afterglow</span>
+            <span class="brand-subtitle">CITY POP / PROMPT ARCHIVE</span>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="主导航">
+          <a href="#gallery">作品墙</a>
+          <a href="#method">方法</a>
+          <a href="#notes">档案说明</a>
+        </nav>
+
+        <div class="header-meta">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>36 outputs / 35 prompts</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span>VISUAL EXPERIMENT / 2026</p>
+            <h1 id="hero-title">Shanghai<br /><em>Afterglow</em></h1>
+            <p class="hero-lede">
+              从上海开始，把同一套 City Pop 绘画语法带去另一座城市。先锁定一处观看位置，再让椰子树、敞篷车、点状灯火和粗糙印刷把现实推向一场热带梦。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#gallery">进入作品墙 <span aria-hidden="true">↘</span></a>
+              <a class="text-link" href="#method">先看这套方法 <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="hero-frame" aria-label="精选作品：银杏胡同月色">
+            <div class="frame-ruler" aria-hidden="true">
+              <span>SELECTED OUTPUT</span>
+              <span>05 / 05</span>
+            </div>
+            <button class="hero-image-button" type="button" data-action="image" data-item-id="bj-09" aria-label="打开精选作品大图">
+              <img src="images/bj-09/chatgpt_1788082758077.png" alt="银杏树、朱红门框、灰瓦屋檐和月色组成的北京胡同夜景绘画" />
+              <span class="frame-corner frame-corner-tl" aria-hidden="true"></span>
+              <span class="frame-corner frame-corner-br" aria-hidden="true"></span>
+              <span class="image-open-hint">OPEN IMAGE ↗</span>
+            </button>
+            <div class="frame-caption">
+              <div>
+                <span class="caption-label">北京局部 / 05</span>
+                <strong>银杏胡同月色</strong>
+              </div>
+              <span class="caption-arrow" aria-hidden="true">↗</span>
+            </div>
+          </div>
+
+          <aside class="hero-note" aria-label="项目摘要">
+            <div class="note-index">FIELD NOTE<br />NO. 05</div>
+            <p>“换一座城，先别换掉光的语法。”</p>
+            <div class="note-rule"></div>
+            <dl class="hero-stats">
+              <div>
+                <dt>ROUNDS</dt>
+                <dd>05</dd>
+              </div>
+              <div>
+                <dt>SCENES</dt>
+                <dd>02</dd>
+              </div>
+              <div>
+                <dt>MARKS</dt>
+                <dd>∞</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section class="archive-intro" id="gallery" aria-labelledby="gallery-title">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>THE CONTACT SHEET</p>
+            <h2 id="gallery-title">同一套语法，<br /><em>换一座城。</em></h2>
+          </div>
+          <div class="archive-intro-copy">
+            <p>
+              这里不是“最佳成片”列表，而是一次可回看的提示词实验。从上海到北京，每张图都保留自己的失败、偏移和有效变量；点开任意一张，完整提示词会和它一起出现。
+            </p>
+            <div class="archive-legend" aria-label="档案图例">
+              <span><i class="legend-swatch swatch-coral"></i>场景固定</span>
+              <span><i class="legend-swatch swatch-sun"></i>形式变量</span>
+              <span><i class="legend-swatch swatch-violet"></i>规律吸收</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="gallery-toolbar" aria-label="作品筛选工具">
+          <div class="filter-group" role="group" aria-label="按轮次筛选">
+            <button class="filter-button is-active" type="button" data-filter="all">全部 <span>36</span></button>
+            <button class="filter-button" type="button" data-filter="round1">01 基准 <span>10</span></button>
+            <button class="filter-button" type="button" data-filter="round2">02 粗粝 <span>7</span></button>
+            <button class="filter-button" type="button" data-filter="round3">03 吸收 <span>3</span></button>
+            <button class="filter-button" type="button" data-filter="round4">04 局部 <span>6</span></button>
+            <button class="filter-button" type="button" data-filter="round5">05 北京 <span>10</span></button>
+          </div>
+          <label class="search-field">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span class="sr-only">搜索作品或提示词</span>
+            <input id="search-input" type="search" placeholder="搜索标题 / 关键词" autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+        </div>
+
+        <div class="gallery-status" aria-live="polite">
+          <span id="result-count">正在加载作品…</span>
+          <span class="gallery-status-line" aria-hidden="true"></span>
+          <span>点击图片看大图，点击“提示词”查看完整配方</span>
+        </div>
+
+        <div class="rounds" id="rounds-container"></div>
+
+        <section class="method-section" id="method" aria-labelledby="method-title">
+          <div class="method-heading">
+            <p class="eyebrow"><span class="eyebrow-line"></span>THE WORKING GRAMMAR</p>
+            <h2 id="method-title">把风格拆成<br /><em>可以试的变量。</em></h2>
+          </div>
+          <div class="method-grid">
+            <article class="method-card">
+              <span class="method-number">01</span>
+              <h3>先锁定观看位置</h3>
+              <p>上海固定外滩中段，北京改取红墙、胡同、园林或高楼的一处局部。先锁机位，变化才有可比性。</p>
+              <div class="method-tags"><span>地标</span><span>机位</span><span>比例</span></div>
+            </article>
+            <article class="method-card method-card-highlight">
+              <span class="method-number">02</span>
+              <h3>借一件热带符号</h3>
+              <p>椰子树、敞篷车、白云、泳池不是把城市改造成海滩，而是把城市拖进理想化的度假叙事。</p>
+              <div class="method-tags"><span>椰树</span><span>复古车</span><span>泳池</span></div>
+            </article>
+            <article class="method-card">
+              <span class="method-number">03</span>
+              <h3>让笔触替你省略</h3>
+              <p>粗刷、断笔、纸纤维和点状灯火，把远处的建筑从“细节对象”压缩成“光的记号”。</p>
+              <div class="method-tags"><span>点光</span><span>干刷</span><span>套印</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="prompt-anatomy" aria-labelledby="anatomy-title">
+          <div class="anatomy-label">
+            <p class="eyebrow"><span class="eyebrow-line"></span>PROMPT ANATOMY</p>
+            <h2 id="anatomy-title">一条好提示词，<br /><em>要同时管住五件事。</em></h2>
+          </div>
+          <ol class="anatomy-list">
+            <li><span>01</span><strong>SCENE ANCHOR</strong><small>城市哪里、从哪看</small></li>
+            <li><span>02</span><strong>RESORT BORROW</strong><small>借什么热带想象</small></li>
+            <li><span>03</span><strong>MARK LANGUAGE</strong><small>粗刷、点光、纸纹</small></li>
+            <li><span>04</span><strong>COLOR SCRIPT</strong><small>主色与光的温度</small></li>
+            <li><span>05</span><strong>GUARDRAILS</strong><small>明确不要什么</small></li>
+          </ol>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="notes">
+        <div class="footer-title">SHANGHAI AFTERGLOW</div>
+        <p>一份从上海延伸到北京，关于城市、热带想象和粗糙印刷感的提示词实验档案。</p>
+        <div class="footer-meta">
+          <a href="https://github.com/holynova/citypop-shanghai-exploration" target="_blank" rel="noreferrer" data-umami-event="github-repo-click">GITHUB REPO ↗</a>
+          <span>LOCAL ARCHIVE</span>
+          <span>36 IMAGES</span>
+          <span>35 PROMPTS</span>
+        </div>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal-backdrop" id="prompt-modal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" type="button" data-action="close-modal" aria-label="关闭提示词窗口">×</button>
+        <div class="modal-art">
+          <img id="modal-image" src="images/r3-03/chatgpt_1788066132128.png" alt="" />
+          <span class="modal-art-label">VISUAL OUTPUT</span>
+        </div>
+        <div class="modal-content">
+          <div class="modal-kicker" id="modal-kicker">03 / 03 · 规律吸收</div>
+          <h2 id="modal-title">作品标题</h2>
+          <div class="modal-meta" id="modal-meta"></div>
+          <div class="prompt-divider"></div>
+          <div class="prompt-heading"><span>FULL PROMPT</span><span id="modal-prompt-length">0 字</span></div>
+          <p class="prompt-text" id="modal-prompt"></p>
+          <div class="modal-actions">
+            <button class="button button-primary" type="button" id="modal-copy-button">复制完整提示词 <span aria-hidden="true">↗</span></button>
+            <button class="button button-quiet" type="button" data-action="close-modal">返回作品墙</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" type="button" data-action="close-lightbox" aria-label="关闭大图">×</button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-image" src="images/r3-03/chatgpt_1788066132128.png" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+  </body>
+</html>
