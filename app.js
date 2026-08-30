@@ -34,6 +34,13 @@ const roundInfo = {
     description: "把同一套粗颗粒 City Pop 规则带到北京：红墙、灰瓦、柳影、皇家园林、屋顶泳池和北方山势，都只取一处局部。",
     axis: ["北京局部", "4:5", "城市变奏"],
   },
+  round6: {
+    number: "06",
+    kicker: "REFERENCE GRAMMAR / 10 OUTPUTS",
+    title: "把参考规律变成一套模板",
+    description: "不复制参考图的具体场景，只吸收它们的粗刷、点描、有限色与边缘框景，再把这套语法放回上海的十个局部机位。",
+    axis: ["上海局部", "4:5", "粗颗粒"],
+  },
 };
 
 const visualMeta = {
@@ -72,6 +79,16 @@ const visualMeta = {
   "bj-08": { tags: ["景山", "松枝", "风筝"], summary: "古松、风筝线和远处金色屋顶，把景山的风压缩成几块色带。", palette: ["#3d98ac", "#ac7fbe", "#ec866d"] },
   "bj-09": { tags: ["银杏", "胡同月色", "点光"], summary: "银杏树与朱红门框沉入午夜蓝，窗灯只留下疏密变化的点点。", palette: ["#151936", "#63234d", "#e3ae5e"] },
   "bj-10": { tags: ["居庸关", "长城斜线", "北方山风"], summary: "长城斜线、油松和山谷灯火，把北京的北方山势变成一张旅行唱片。", palette: ["#254da3", "#e9806b", "#edb957"] },
+  "r6-01": { tags: ["梧桐", "武康路", "粗刷"], summary: "巨大树冠把上海老公寓切成一块开阔的蓝色天空。", palette: ["#2c78d4", "#19375e", "#c9e640"] },
+  "r6-02": { tags: ["苏州河", "桥拱", "点光"], summary: "桥拱切出紫橙色水面，复古车只停在画面边缘。", palette: ["#1b335d", "#e86782", "#f0a45e"] },
+  "r6-03": { tags: ["石库门", "棕榈叶", "红砖"], summary: "红砖天井与一片棕榈叶，让上海里弄借来热带空气。", palette: ["#b84f3c", "#2f9eb8", "#23325b"] },
+  "r6-04": { tags: ["渡轮", "救生圈", "江面点光"], summary: "救生圈放大成前景符号，远岸只剩点状灯火。", palette: ["#315ac3", "#e65a4d", "#f2c174"] },
+  "r6-05": { tags: ["屋顶泳池", "上海中心", "几何"], summary: "泳池的几何透视把陆家嘴高楼压成度假远景。", palette: ["#21a4c4", "#e96572", "#f1d39a"] },
+  "r6-06": { tags: ["朱家角", "白墙", "荷叶"], summary: "石桥、荷叶和窄水巷保留江南上海的潮湿晚风。", palette: ["#4854b0", "#d85b8c", "#dfb16d"] },
+  "r6-07": { tags: ["杨浦大桥", "斜线", "航迹"], summary: "一根粗桥缆承担动势，城市和灯火退成横向色带。", palette: ["#302a81", "#ed6b55", "#f0b15f"] },
+  "r6-08": { tags: ["复兴公园", "珊瑚车", "花枝"], summary: "绿荫门框和珊瑚车头组成上海公园街角的夏日唱片。", palette: ["#277fbd", "#ef6b43", "#d5d65b"] },
+  "r6-09": { tags: ["阳台", "月色", "夜景点光"], summary: "盆栽、栏杆和月亮把城市夜景收成安静的局部。", palette: ["#121c4d", "#6d3d79", "#eecf9c"] },
+  "r6-10": { tags: ["外白渡桥", "铸铁栏杆", "余晖"], summary: "桥栏的强烈对角线把熟悉地标压成形状和光。", palette: ["#3970b4", "#ef896d", "#f5d39a"] },
 };
 
 const state = {
@@ -94,6 +111,7 @@ const elements = {
   modalPrompt: document.querySelector("#modal-prompt"),
   modalPromptLength: document.querySelector("#modal-prompt-length"),
   modalCopy: document.querySelector("#modal-copy-button"),
+  promptTemplate: document.querySelector("#prompt-template"),
   lightbox: document.querySelector("#lightbox"),
   lightboxImage: document.querySelector("#lightbox-image"),
   lightboxCaption: document.querySelector("#lightbox-caption"),
@@ -121,7 +139,7 @@ function cityLabel(item) {
 }
 
 function roundCardClass(item, index) {
-  if (item.round === "round3" || item.round === "round4" || item.round === "round5") {
+  if (item.round === "round3" || item.round === "round4" || item.round === "round5" || item.round === "round6") {
     return ["is-portrait-feature", "is-portrait", "is-portrait-small"][index % 3];
   }
 
@@ -244,6 +262,24 @@ async function copyPrompt(item) {
   }
 }
 
+async function copyTemplate() {
+  const template = elements.promptTemplate.textContent.trim();
+  try {
+    await navigator.clipboard.writeText(template);
+  } catch (error) {
+    const helper = document.createElement("textarea");
+    helper.value = template;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    document.execCommand("copy");
+    helper.remove();
+  }
+  showToast("已复制通用提示词模板");
+}
+
 function openPrompt(item) {
   state.activeItem = item;
   state.lastFocusedElement = document.activeElement;
@@ -302,6 +338,10 @@ function setFilter(filter) {
 }
 
 function handleAction(action, item) {
+  if (action === "copy-template") {
+    copyTemplate();
+    return;
+  }
   if (!item && action !== "close-modal" && action !== "close-lightbox") return;
   if (action === "prompt") openPrompt(item);
   if (action === "copy") copyPrompt(item);

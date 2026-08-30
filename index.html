@@ -41,12 +41,13 @@
         <nav class="site-nav" aria-label="主导航">
           <a href="#gallery">作品墙</a>
           <a href="#method">方法</a>
+          <a href="#template">模板</a>
           <a href="#notes">档案说明</a>
         </nav>
 
         <div class="header-meta">
           <span class="status-dot" aria-hidden="true"></span>
-          <span>36 outputs / 35 prompts</span>
+          <span>46 outputs / 45 prompts</span>
         </div>
       </header>
 
@@ -64,34 +65,34 @@
             </div>
           </div>
 
-          <div class="hero-frame" aria-label="精选作品：银杏胡同月色">
-            <div class="frame-ruler" aria-hidden="true">
-              <span>SELECTED OUTPUT</span>
-              <span>05 / 05</span>
-            </div>
-            <button class="hero-image-button" type="button" data-action="image" data-item-id="bj-09" aria-label="打开精选作品大图">
-              <img src="images/bj-09/chatgpt_1788082758077.png" alt="银杏树、朱红门框、灰瓦屋檐和月色组成的北京胡同夜景绘画" />
+      <div class="hero-frame" aria-label="精选作品：杨浦大桥的斜向电缆">
+              <div class="frame-ruler" aria-hidden="true">
+                <span>SELECTED OUTPUT</span>
+                <span>06 / 10</span>
+              </div>
+              <button class="hero-image-button" type="button" data-action="image" data-item-id="r6-07" aria-label="打开精选作品大图">
+              <img src="images/r6-07/citypop-shanghai-07.png" alt="杨浦大桥深蓝斜向电缆、珊瑚色晚霞和上海江岸点光组成的绘画" />
               <span class="frame-corner frame-corner-tl" aria-hidden="true"></span>
               <span class="frame-corner frame-corner-br" aria-hidden="true"></span>
               <span class="image-open-hint">OPEN IMAGE ↗</span>
             </button>
             <div class="frame-caption">
               <div>
-                <span class="caption-label">北京局部 / 05</span>
-                <strong>银杏胡同月色</strong>
+                <span class="caption-label">参考规律 / 07</span>
+                <strong>杨浦大桥的斜向电缆</strong>
               </div>
               <span class="caption-arrow" aria-hidden="true">↗</span>
             </div>
           </div>
 
           <aside class="hero-note" aria-label="项目摘要">
-            <div class="note-index">FIELD NOTE<br />NO. 05</div>
-            <p>“换一座城，先别换掉光的语法。”</p>
+            <div class="note-index">FIELD NOTE<br />NO. 06</div>
+            <p>“先把复杂城市压成几种形状，再把光点留给远处。”</p>
             <div class="note-rule"></div>
             <dl class="hero-stats">
               <div>
                 <dt>ROUNDS</dt>
-                <dd>05</dd>
+                <dd>06</dd>
               </div>
               <div>
                 <dt>SCENES</dt>
@@ -112,7 +113,7 @@
           </div>
           <div class="archive-intro-copy">
             <p>
-              这里不是“最佳成片”列表，而是一次可回看的提示词实验。从上海到北京，每张图都保留自己的失败、偏移和有效变量；点开任意一张，完整提示词会和它一起出现。
+              这里不是“最佳成片”列表，而是一次可回看的提示词实验。从上海到北京，每张图都保留自己的失败、偏移和有效变量；第六轮把三张参考图的共同规律拆成模板，再回到上海的十个局部机位。点开任意一张，完整提示词会和它一起出现。
             </p>
             <div class="archive-legend" aria-label="档案图例">
               <span><i class="legend-swatch swatch-coral"></i>场景固定</span>
@@ -124,12 +125,13 @@
 
         <div class="gallery-toolbar" aria-label="作品筛选工具">
           <div class="filter-group" role="group" aria-label="按轮次筛选">
-            <button class="filter-button is-active" type="button" data-filter="all">全部 <span>36</span></button>
+            <button class="filter-button is-active" type="button" data-filter="all">全部 <span>46</span></button>
             <button class="filter-button" type="button" data-filter="round1">01 基准 <span>10</span></button>
             <button class="filter-button" type="button" data-filter="round2">02 粗粝 <span>7</span></button>
             <button class="filter-button" type="button" data-filter="round3">03 吸收 <span>3</span></button>
             <button class="filter-button" type="button" data-filter="round4">04 局部 <span>6</span></button>
             <button class="filter-button" type="button" data-filter="round5">05 北京 <span>10</span></button>
+            <button class="filter-button" type="button" data-filter="round6">06 参考 <span>10</span></button>
           </div>
           <label class="search-field">
             <span class="search-icon" aria-hidden="true">⌕</span>
@@ -187,6 +189,32 @@
             <li><span>05</span><strong>GUARDRAILS</strong><small>明确不要什么</small></li>
           </ol>
         </section>
+
+        <section class="prompt-template-section" id="template" aria-labelledby="template-title">
+          <div class="template-intro">
+            <p class="eyebrow"><span class="eyebrow-line"></span>REFERENCE GRAMMAR</p>
+            <h2 id="template-title">把规律写成<br /><em>可复用模板。</em></h2>
+            <p>先锁定城市局部，再决定一个前景借景元素；最后用粗刷、点光和有限色把复杂现实压成一张有空气的唱片封面。</p>
+          </div>
+          <div class="template-sheet">
+            <div class="template-sheet-header">
+              <span>UNIVERSAL PROMPT / CITY FRAGMENT</span>
+              <button class="mini-button" type="button" data-action="copy-template" data-umami-event="copy-template">复制模板 ↗</button>
+            </div>
+            <pre id="prompt-template">Use case: stylized-concept
+Asset type: vertical web gallery artwork
+Input images: reference images for brushwork, palette, composition and print texture only; do not copy their exact scenes or layouts.
+Primary request: 原创一幅{城市}的{具体局部机位}绘画，主体是{地标或建筑片段}，加入{一个前景框景元素}和{一个适度的度假化借景符号}，不画完整城市全景。
+Style/medium: rough hand-painted gouache and acrylic editorial illustration fused with limited-color screen print; broad flat blocks, coarse dry-brush, broken edges, scraped pigment, irregular halftone dots, visible paper fibers, slight ink misregistration.
+Composition/framing: 4:5 portrait, one large foreground frame, 50–70% open sky or quiet negative space, layered middle ground, one small landmark anchor, a simple diagonal or horizontal rhythm.
+Lighting/mood: {时间与天气}，松弛、开阔、带一点城市度假感。
+Color palette: cobalt or cerulean sky, deep indigo shadows, violet or magenta transition, coral accent, warm cream and citrus yellow light, restrained leaf green.
+Mark language: distant windows, lamps and reflections become sparse hand-placed dots and short broken dashes; keep edges imperfect and visibly handmade, never overly detailed.
+Constraints: keep the place recognizable, preserve the rough print surface, and make the scene original rather than copying the reference composition.
+Avoid: photorealism, glossy 3D, smooth AI gradients, hyper-detailed windows or leaves, dense skyline, readable signs, logos, watermark, cyberpunk, collage, and exact artist imitation.</pre>
+            <p class="template-note">替换花括号中的内容即可；“框景 + 留白 + 点光 + 粗颗粒”是这组参考图最稳定的共同骨架。</p>
+          </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="notes">
@@ -195,8 +223,8 @@
         <div class="footer-meta">
           <a href="https://github.com/holynova/citypop-shanghai-exploration" target="_blank" rel="noreferrer" data-umami-event="github-repo-click">GITHUB REPO ↗</a>
           <span>LOCAL ARCHIVE</span>
-          <span>36 IMAGES</span>
-          <span>35 PROMPTS</span>
+          <span>46 IMAGES</span>
+          <span>45 PROMPTS</span>
         </div>
       </footer>
     </div>

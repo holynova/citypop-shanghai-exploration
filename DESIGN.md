@@ -19,16 +19,18 @@ Make the artwork the protagonist and let each prompt read like a studio hypothes
 ## Structure
 
 1. Hero: project name, one selected output, and a short field note establish the experiment in the first viewport.
-2. Contact sheet: five rounds create a narrative from controlled baseline → rough mark-making → reference-informed absorption → Shanghai local fragments → Beijing city variation.
+2. Contact sheet: six rounds create a narrative from controlled baseline → rough mark-making → reference-informed absorption → Shanghai local fragments → Beijing city variation → reusable reference grammar.
 3. Work plates: uneven spans and image ratios keep the gallery from becoming a grid of identical product cards.
 4. Method: three principles explain the usable grammar behind the experiments.
 5. Prompt anatomy: five reusable prompt fields turn the archive into a working tool.
+6. Prompt template: a copyable recipe keeps the reference-derived visual grammar available for the next experiment.
 
 ## Interaction rules
 
 - Image buttons open a focused lightbox.
 - “提示词” opens the full prompt alongside its image.
 - “复制” copies the complete prompt and confirms with a local toast.
+- “复制模板” copies the reusable reference-grammar prompt and confirms with a local toast.
 - Round filters and keyword search update the contact sheet in place.
 - `/` focuses search on desktop; Escape closes overlays.
 

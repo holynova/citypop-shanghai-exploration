@@ -24,7 +24,7 @@ Desktop-first browsing with occasional mobile review. The gallery should remain 
 
 ## Core capabilities
 
-- Browse all generated images across five experiment rounds and two cities.
+- Browse all generated images across six experiment rounds and two cities.
 - Filter by round and style direction.
 - Read the complete prompt beside the visual result.
 - Copy any prompt for another generation pass.
@@ -38,6 +38,7 @@ Desktop-first browsing with occasional mobile review. The gallery should remain 
 - 3 third-round experiments shaped by the supplied reference observations.
 - 6 fourth-round local-view experiments that vary Shanghai foreground elements without returning to a Bund panorama.
 - 10 fifth-round Beijing local-view experiments that vary historic, waterside, mountain, and modern-CBD fragments.
+- 10 sixth-round Shanghai reference-grammar experiments that turn shared brush, palette, composition, and print-texture observations into a reusable prompt template.
 
 ## Visual direction
 
