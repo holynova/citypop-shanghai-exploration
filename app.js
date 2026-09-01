@@ -138,13 +138,8 @@ function cityLabel(item) {
   return item.city || (item.round === "round5" ? "北京" : "上海");
 }
 
-function roundCardClass(item, index) {
-  if (item.round === "round3" || item.round === "round4" || item.round === "round5" || item.round === "round6") {
-    return ["is-portrait-feature", "is-portrait", "is-portrait-small"][index % 3];
-  }
-
-  const pattern = ["is-featured", "is-tall", "is-standard", "is-standard", "is-standard", "is-wide", "is-standard", "is-standard", "is-standard", "is-wide"];
-  return pattern[index % pattern.length];
+function thumbnailPath(item) {
+  return item.image.replace(/^images\//, "images/thumbs/").replace(/\.(png|jpe?g)$/i, ".jpg");
 }
 
 function getVisibleItems() {
@@ -177,10 +172,14 @@ function paletteMarkup(meta) {
 function renderWorkCard(item, index) {
   const meta = getMeta(item);
   const alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
+  const thumbnail = thumbnailPath(item);
   return `
-    <article class="work-card ${roundCardClass(item, index)}" data-item-id="${escapeHTML(item.id)}">
+    <article class="work-card" data-item-id="${escapeHTML(item.id)}">
       <button class="work-image-button" type="button" data-action="image" data-item-id="${escapeHTML(item.id)}" aria-label="打开《${escapeHTML(item.title)}》大图">
-        <img src="${escapeHTML(item.image)}" alt="${escapeHTML(alt)}" loading="lazy" />
+        <picture class="work-image-picture">
+          <source srcset="${escapeHTML(thumbnail)}" type="image/jpeg" sizes="(max-width: 620px) calc(100vw - 2.6rem), (max-width: 860px) calc((100vw - 3.85rem) / 2), calc((100vw - 8vw - 2.5rem) / 3)" />
+          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(alt)}" loading="lazy" decoding="async" fetchpriority="low" />
+        </picture>
         <span class="work-index">${escapeHTML(outputLabel(item))}</span>
         <span class="work-zoom">OPEN ↗</span>
       </button>
