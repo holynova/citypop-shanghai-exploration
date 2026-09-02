@@ -829,9 +829,17 @@ h2 {
 
 .work-image-button img {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--night-deep);
   transition: transform 360ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 360ms ease;
+}
+
+.work-card.is-landscape .work-image-button img {
+  aspect-ratio: 16 / 9;
+}
+
+.work-card.is-portrait .work-image-button img {
+  aspect-ratio: 4 / 5;
 }
 
 .work-image-button:hover img,

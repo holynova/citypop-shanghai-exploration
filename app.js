@@ -142,6 +142,10 @@ function thumbnailPath(item) {
   return item.image.replace(/^images\//, "images/thumbs/").replace(/\.(png|jpe?g)$/i, ".jpg");
 }
 
+function imageOrientation(item) {
+  return item.round === "round1" || item.round === "round2" ? "is-landscape" : "is-portrait";
+}
+
 function getVisibleItems() {
   const query = state.query.trim().toLowerCase();
   return experiments.filter((item) => {
@@ -169,12 +173,12 @@ function paletteMarkup(meta) {
   return meta.palette.map((color) => `<i class="palette-dot" style="--swatch: ${color}" aria-hidden="true"></i>`).join("");
 }
 
-function renderWorkCard(item, index) {
+function renderWorkCard(item) {
   const meta = getMeta(item);
   const alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
   const thumbnail = thumbnailPath(item);
   return `
-    <article class="work-card" data-item-id="${escapeHTML(item.id)}">
+    <article class="work-card ${imageOrientation(item)}" data-item-id="${escapeHTML(item.id)}">
       <button class="work-image-button" type="button" data-action="image" data-item-id="${escapeHTML(item.id)}" aria-label="打开《${escapeHTML(item.title)}》大图">
         <picture class="work-image-picture">
           <source srcset="${escapeHTML(thumbnail)}" type="image/jpeg" sizes="(max-width: 620px) calc(100vw - 2.6rem), (max-width: 860px) calc((100vw - 3.85rem) / 2), calc((100vw - 8vw - 2.5rem) / 3)" />
@@ -206,7 +210,7 @@ function renderRound(round, items) {
   const info = roundInfo[round];
   const hidden = items.length === 0 ? " hidden" : "";
   const cards = items.length
-    ? items.map((item, index) => renderWorkCard(item, index)).join("")
+    ? items.map((item) => renderWorkCard(item)).join("")
     : `<div class="empty-state"><strong>这一轮没有匹配项。</strong><span>换一个关键词，或者回到“全部”继续浏览。</span></div>`;
 
   return `

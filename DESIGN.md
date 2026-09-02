@@ -20,7 +20,7 @@ Make the artwork the protagonist and let each prompt read like a studio hypothes
 
 1. Hero: project name, one selected output, and a short field note establish the experiment in the first viewport.
 2. Contact sheet: six rounds create a narrative from controlled baseline → rough mark-making → reference-informed absorption → Shanghai local fragments → Beijing city variation → reusable reference grammar.
-3. Work plates: a consistent three-column rhythm and shared 4:5 image frame make visual comparison immediate.
+3. Work plates: a consistent three-column rhythm preserves the archive's two original formats—16:9 landscape and 4:5 portrait.
 4. Method: three principles explain the usable grammar behind the experiments.
 5. Prompt anatomy: five reusable prompt fields turn the archive into a working tool.
 6. Prompt template: a copyable recipe keeps the reference-derived visual grammar available for the next experiment.
