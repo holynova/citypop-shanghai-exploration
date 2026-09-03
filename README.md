@@ -4,6 +4,7 @@
 
 ## 在线访问
 
+- Cloudflare Worker：<https://citypop-shanghai-exploration.xiaosang.cc>
 - Demo：<https://holynova.github.io/citypop-shanghai-exploration/>
 - GitHub：<https://github.com/holynova/citypop-shanghai-exploration>
 
