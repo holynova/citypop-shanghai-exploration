@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <title>Shanghai Afterglow · 城市晚霞版画档案 - City Pop Shanghai &amp; Beijing Exploration</title>
+  <defs>
+    <linearGradient id="bgGrad_citypop-shanghai-exploration" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A0B2E"/>
+      <stop offset="100%" stop-color="#090414"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad_citypop-shanghai-exploration" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E11D48"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="420" rx="16" fill="url(#bgGrad_citypop-shanghai-exploration)" stroke="#312E81" stroke-width="1.5"/>
+
+  <!-- Left Content Block -->
+  <g transform="translate(60, 50)">
+    <!-- Category Pill -->
+    <rect x="0" y="0" width="326" height="28" rx="14" fill="#E11D48" opacity="0.15"/>
+    <text x="14" y="19" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#E11D48" letter-spacing="1.5">RETRO AESTHETICS &amp; PROMPT ENGINEERING</text>
+
+    <!-- Main Title (Chinese) -->
+    <text x="0" y="85" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="40" font-weight="900" fill="#FFF1F2" letter-spacing="-0.5">
+      Shanghai Afterglow · 城市晚霞版画档案
+    </text>
+
+    <!-- Subtitle (English & Value Proposition) -->
+    <text x="0" y="125" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#8B5CF6" letter-spacing="0.5">
+      City Pop Shanghai &amp; Beijing Exploration
+    </text>
+
+    <!-- Tagline Description -->
+    <text x="0" y="170" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif" font-size="16" font-weight="500" fill="#C084FC">
+      80 年代昭和 City Pop 粗颗粒平版画、色彩规律与 45 条可复现提示词模板
+    </text>
+
+    <!-- Key Spec Badge Array -->
+    <g transform="translate(0, 225)">
+      <!-- Badge 1 -->
+      <rect x="0" y="0" width="509" height="38" rx="8" fill="#1E2430" stroke="#312E81" stroke-width="1"/>
+      <circle cx="18" cy="19" r="4" fill="#E11D48"/>
+      <text x="32" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#FFF1F2">46 PRINTS · 45 STRUCTURED PROMPTS · LIMITED PALETTE</text>
+    </g>
+
+    <!-- Navigation / Quick action badges -->
+    <g transform="translate(0, 285)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#E11D48"/>
+      <text x="67" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">TRY LIVE DEMO</text>
+
+      <rect x="145" y="0" width="125" height="34" rx="17" fill="#1E293B" stroke="#312E81" stroke-width="1"/>
+      <text x="207" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#C084FC">GITHUB REPO</text>
+    </g>
+  </g>
+
+  <!-- Right Visual Specimen Motif -->
+  
+        <!-- City Pop Shanghai Visual -->
+        <g transform="translate(740, 45)">
+          <rect x="0" y="0" width="380" height="310" rx="14" fill="#0D0718" stroke="#E11D48" stroke-width="2"/>
+          
+          <!-- Sunset Gradient Sun with Blinds -->
+          <defs>
+            <linearGradient id="popSun" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F43F5E"/>
+              <stop offset="100%" stop-color="#FBBF24"/>
+            </linearGradient>
+          </defs>
+          <circle cx="190" cy="130" r="70" fill="url(#popSun)"/>
+          <!-- Horizontal blind lines -->
+          <line x1="120" y1="115" x2="260" y2="115" stroke="#0D0718" stroke-width="3"/>
+          <line x1="120" y1="125" x2="260" y2="125" stroke="#0D0718" stroke-width="4"/>
+          <line x1="120" y1="137" x2="260" y2="137" stroke="#0D0718" stroke-width="5"/>
+          <line x1="120" y1="151" x2="260" y2="151" stroke="#0D0718" stroke-width="6"/>
+          
+          <!-- Skyline Silhouette -->
+          <path d="M40 210 L80 210 L80 180 L110 180 L110 210 L150 210 L150 140 L165 140 L165 110 L175 110 L175 210 L195 210 L195 160 L220 160 L220 210 L250 210 L250 130 L270 130 L270 210 L300 210 L300 170 L340 170 L340 210 Z" fill="#2E1065"/>
+          <!-- Water Reflection Grid -->
+          <rect x="20" y="215" width="340" height="75" fill="#1E0B38" rx="6"/>
+          <line x1="40" y1="230" x2="340" y2="230" stroke="#06B6D4" stroke-width="1.5" opacity="0.6"/>
+          <line x1="60" y1="245" x2="320" y2="245" stroke="#06B6D4" stroke-width="2" opacity="0.7"/>
+          <line x1="90" y1="260" x2="290" y2="260" stroke="#E11D48" stroke-width="2.5" opacity="0.8"/>
+          
+          <!-- Badge Overprint -->
+          <rect x="40" y="20" width="160" height="26" rx="13" fill="#E11D48" opacity="0.9"/>
+          <text x="120" y="37" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF" letter-spacing="1">46 PRINTS · 45 PROMPTS</text>
+        </g>
+        
+</svg>
