@@ -57,13 +57,19 @@
 ```bash
 git clone https://github.com/holynova/citypop-shanghai-exploration.git
 cd citypop-shanghai-exploration
-npm run serve # or any static server
+python3 -m http.server 4174 --bind 127.0.0.1
 ```
 
 ---
 
+打开 [localhost:4174](http://localhost:4174)。浏览已有图像无需调用生成服务。
+
+## 阅读与维护
+
+先看画作，再复制对应提示词，对照不同轮次的构图、颗粒和配色变化。画作目录由 `data.js` 提供；各轮次提示词保存为根目录的 `prompts*.json`。修改脚本后可运行 `npm run check` 检查语法。
+
 ## 开源协议与作者 (License & Author)
 
 - **作者**：[holynova (小桑)](https://xiaosang.cc/)
-- **授权协议**：[MIT License](./LICENSE)
+- **授权说明**：仓库当前未附独立 LICENSE 文件；复用代码或素材前请确认相应授权。
 - **合辑收录**：本仓库作为精选项目收录于 [Where Craft Lives (xiaosang.cc)](https://xiaosang.cc/)。
