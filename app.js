@@ -173,16 +173,34 @@ function paletteMarkup(meta) {
   return meta.palette.map((color) => `<i class="palette-dot" style="--swatch: ${color}" aria-hidden="true"></i>`).join("");
 }
 
-function renderWorkCard(item) {
+function getThumbnailUrl(originalPath) {
+  return originalPath.replace(/^images\//, "images/thumbs-webp/").replace(/\.png$/, ".webp");
+}
+
+function getDetailUrl(originalPath) {
+  return originalPath.replace(/^images\//, "images/detail-webp/").replace(/\.png$/, ".webp");
+}
+
+function renderWorkCard(item, index) {
   const meta = getMeta(item);
   const alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
-  const thumbnail = thumbnailPath(item);
+  const thumbUrl = getThumbnailUrl(item.image);
+  const jpegThumb = thumbnailPath(item);
+  const isLandscape = item.aspect === "landscape" || item.round === "round1" || item.round === "round2";
+  const width = 600;
+  const height = isLandscape ? 338 : 750;
+  const isEager = typeof index === "number" && index < 4;
+  const loadingAttr = isEager
+    ? `width="${width}" height="${height}" loading="eager" fetchpriority="high" decoding="async"`
+    : `width="${width}" height="${height}" loading="lazy" decoding="async"`;
+
   return `
     <article class="work-card ${imageOrientation(item)}" data-item-id="${escapeHTML(item.id)}">
       <button class="work-image-button" type="button" data-action="image" data-item-id="${escapeHTML(item.id)}" aria-label="打开《${escapeHTML(item.title)}》大图">
         <picture class="work-image-picture">
-          <source srcset="${escapeHTML(thumbnail)}" type="image/jpeg" sizes="(max-width: 620px) calc(100vw - 2.6rem), (max-width: 860px) calc((100vw - 3.85rem) / 2), calc((100vw - 8vw - 2.5rem) / 3)" />
-          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(alt)}" loading="lazy" decoding="async" fetchpriority="low" />
+          <source srcset="${escapeHTML(thumbUrl)}" type="image/webp" />
+          <source srcset="${escapeHTML(jpegThumb)}" type="image/jpeg" />
+          <img src="${escapeHTML(thumbUrl)}" alt="${escapeHTML(alt)}" ${loadingAttr} />
         </picture>
         <span class="work-index">${escapeHTML(outputLabel(item))}</span>
         <span class="work-zoom">OPEN ↗</span>
@@ -210,7 +228,7 @@ function renderRound(round, items) {
   const info = roundInfo[round];
   const hidden = items.length === 0 ? " hidden" : "";
   const cards = items.length
-    ? items.map((item) => renderWorkCard(item)).join("")
+    ? items.map((item, index) => renderWorkCard(item, index)).join("")
     : `<div class="empty-state"><strong>这一轮没有匹配项。</strong><span>换一个关键词，或者回到“全部”继续浏览。</span></div>`;
 
   return `
@@ -283,11 +301,35 @@ async function copyTemplate() {
   showToast("已复制通用提示词模板");
 }
 
+let modalImageToken = 0;
+let lightboxImageToken = 0;
+
 function openPrompt(item) {
   state.activeItem = item;
   state.lastFocusedElement = document.activeElement;
   const meta = getMeta(item);
-  elements.modalImage.src = item.image;
+  const token = ++modalImageToken;
+  const thumbUrl = getThumbnailUrl(item.image);
+  const detailUrl = getDetailUrl(item.image);
+
+  elements.modalImage.src = thumbUrl;
+  elements.modalImage.style.filter = "blur(4px)";
+  elements.modalImage.style.transition = "filter 0.25s ease-out";
+
+  const highRes = new Image();
+  highRes.src = detailUrl;
+  const onDone = () => {
+    if (token === modalImageToken) {
+      elements.modalImage.src = detailUrl;
+      elements.modalImage.style.filter = "none";
+    }
+  };
+  if (typeof highRes.decode === "function") {
+    highRes.decode().then(onDone).catch(onDone);
+  } else {
+    highRes.onload = onDone;
+  }
+
   elements.modalImage.alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
   elements.modalKicker.textContent = `${item.roundLabel} · ${outputLabel(item)}`;
   elements.modalTitle.textContent = item.title;
@@ -301,6 +343,7 @@ function openPrompt(item) {
 }
 
 function closePrompt() {
+  modalImageToken++;
   elements.promptModal.classList.remove("is-open");
   elements.promptModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
@@ -312,7 +355,28 @@ function closePrompt() {
 
 function openLightbox(item) {
   state.lastFocusedElement = document.activeElement;
-  elements.lightboxImage.src = item.image;
+  const token = ++lightboxImageToken;
+  const thumbUrl = getThumbnailUrl(item.image);
+  const detailUrl = getDetailUrl(item.image);
+
+  elements.lightboxImage.src = thumbUrl;
+  elements.lightboxImage.style.filter = "blur(4px)";
+  elements.lightboxImage.style.transition = "filter 0.25s ease-out";
+
+  const highRes = new Image();
+  highRes.src = detailUrl;
+  const onDone = () => {
+    if (token === lightboxImageToken) {
+      elements.lightboxImage.src = detailUrl;
+      elements.lightboxImage.style.filter = "none";
+    }
+  };
+  if (typeof highRes.decode === "function") {
+    highRes.decode().then(onDone).catch(onDone);
+  } else {
+    highRes.onload = onDone;
+  }
+
   elements.lightboxImage.alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
   elements.lightboxCaption.textContent = `${item.roundLabel} / ${item.title}`;
   elements.lightbox.classList.add("is-open");
@@ -322,6 +386,7 @@ function openLightbox(item) {
 }
 
 function closeLightbox() {
+  lightboxImageToken++;
   elements.lightbox.classList.remove("is-open");
   elements.lightbox.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");

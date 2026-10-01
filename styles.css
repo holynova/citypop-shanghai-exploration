@@ -807,6 +807,8 @@ h2 {
   border: 1px solid var(--line);
   background: rgba(10, 13, 53, 0.42);
   transition: border-color 180ms ease, transform 180ms ease, background-color 180ms ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 450px;
 }
 
 .work-card:hover {
