@@ -1,42 +1,42 @@
 const roundInfo = {
   round1: {
     number: "01",
-    kicker: "BASELINE STUDIES / 10 PROMPTS",
+    kicker: "基准探索 / 10 条提示词",
     title: "先固定上海，再寻找语言",
     description: "同一机位、同一地标、同一片黄浦江。第一轮把“City Pop”拆成空气喷绘、专色印刷、几何平涂、夜间漆彩等十种形式假设。",
     axis: ["固定机位", "16:9", "形式试错"],
   },
   round2: {
     number: "02",
-    kicker: "ROUGH MARKS / 7 OUTPUTS",
+    kicker: "粗粝变量 / 7 张成片",
     title: "把精细度往回拧",
     description: "吸收观察到的规律：椰子树、敞篷车、白云与海岸想象进入上海；远处灯火不再是窗格，而是可以被手工画出来的点点。",
     axis: ["椰树借景", "点状灯火", "粗糙印刷"],
   },
   round3: {
     number: "03",
-    kicker: "REFERENCE ABSORPTION / 3 PROMPTS",
+    kicker: "规律吸收 / 3 条提示词",
     title: "让上海成为一张度假唱片",
     description: "把热带度假构图、横向压缩的城市带、硬边色块和纸面颗粒放进竖幅画面，继续保留上海地标作为锚点。",
     axis: ["4:5", "大面积天空", "规律吸收"],
   },
   round4: {
     number: "04",
-    kicker: "LOCAL FRAGMENTS / 6 OUTPUTS",
+    kicker: "局部取景 / 6 张成片",
     title: "换一个角度，还是上海",
     description: "不再寻找一张完整城市明信片，而是把上海拆成屋顶、桥拱、街角、渡轮栏杆和公园长椅，让地标退到光和形的后面。",
     axis: ["局部取景", "4:5", "前景变化"],
   },
   round5: {
     number: "05",
-    kicker: "BEIJING DETOUR / 10 OUTPUTS",
+    kicker: "北京变奏 / 10 张成片",
     title: "换一座城，保留这套语法",
     description: "把同一套粗颗粒 City Pop 规则带到北京：红墙、灰瓦、柳影、皇家园林、屋顶泳池和北方山势，都只取一处局部。",
     axis: ["北京局部", "4:5", "城市变奏"],
   },
   round6: {
     number: "06",
-    kicker: "REFERENCE GRAMMAR / 10 OUTPUTS",
+    kicker: "参考规律 / 10 张成片",
     title: "把参考规律变成一套模板",
     description: "不复制参考图的具体场景，只吸收它们的粗刷、点描、有限色与边缘框景，再把这套语法放回上海的十个局部机位。",
     axis: ["上海局部", "4:5", "粗颗粒"],
@@ -95,6 +95,7 @@ const state = {
   filter: "all",
   query: "",
   activeItem: null,
+  lightboxItem: null,
   lastFocusedElement: null,
 };
 
@@ -111,10 +112,12 @@ const elements = {
   modalPrompt: document.querySelector("#modal-prompt"),
   modalPromptLength: document.querySelector("#modal-prompt-length"),
   modalCopy: document.querySelector("#modal-copy-button"),
+  modalCounter: document.querySelector("#modal-counter"),
   promptTemplate: document.querySelector("#prompt-template"),
   lightbox: document.querySelector("#lightbox"),
   lightboxImage: document.querySelector("#lightbox-image"),
   lightboxCaption: document.querySelector("#lightbox-caption"),
+  lightboxCounter: document.querySelector("#lightbox-counter"),
 };
 
 function escapeHTML(value) {
@@ -203,7 +206,7 @@ function renderWorkCard(item, index) {
           <img src="${escapeHTML(thumbUrl)}" alt="${escapeHTML(alt)}" ${loadingAttr} />
         </picture>
         <span class="work-index">${escapeHTML(outputLabel(item))}</span>
-        <span class="work-zoom">OPEN ↗</span>
+        <span class="work-zoom">放大 ↗</span>
       </button>
       <div class="work-info">
         <div class="work-topline">
@@ -251,7 +254,7 @@ function renderGallery() {
   const visible = getVisibleItems();
   const groups = Object.keys(roundInfo).map((round) => [round, visible.filter((item) => item.round === round)]);
   elements.rounds.innerHTML = groups.map(([round, items]) => renderRound(round, items)).join("");
-  elements.resultCount.textContent = `${visible.length} 个输出 / ${new Set(visible.map((item) => item.sourceId)).size} 条提示词正在显示`;
+  elements.resultCount.textContent = `${visible.length} 张成片 / ${new Set(visible.map((item) => item.sourceId)).size} 条提示词正在显示`;
 }
 
 function findItem(id) {
@@ -277,9 +280,9 @@ async function copyPrompt(item) {
     helper.style.opacity = "0";
     document.body.appendChild(helper);
     helper.select();
-    document.execCommand("copy");
+    const copied = document.execCommand("copy") !== false;
     helper.remove();
-    showToast(`已复制：《${item.title}》的完整提示词`);
+    showToast(copied ? `已复制：《${item.title}》的完整提示词` : "复制失败，请长按提示词手动复制");
   }
 }
 
@@ -295,8 +298,10 @@ async function copyTemplate() {
     helper.style.opacity = "0";
     document.body.appendChild(helper);
     helper.select();
-    document.execCommand("copy");
+    const copied = document.execCommand("copy") !== false;
     helper.remove();
+    showToast(copied ? "已复制通用提示词模板" : "复制失败，请长按模板手动复制");
+    return;
   }
   showToast("已复制通用提示词模板");
 }
@@ -304,9 +309,11 @@ async function copyTemplate() {
 let modalImageToken = 0;
 let lightboxImageToken = 0;
 
-function openPrompt(item) {
+function openPrompt(item, options = {}) {
   state.activeItem = item;
-  state.lastFocusedElement = document.activeElement;
+  if (!options.keepFocus) {
+    state.lastFocusedElement = document.activeElement;
+  }
   const meta = getMeta(item);
   const token = ++modalImageToken;
   const thumbUrl = getThumbnailUrl(item.image);
@@ -331,15 +338,18 @@ function openPrompt(item) {
   }
 
   elements.modalImage.alt = `${item.title}：${cityLabel(item)} City Pop 绘画实验`;
-  elements.modalKicker.textContent = `${item.roundLabel} · ${outputLabel(item)}`;
+  elements.modalKicker.textContent = `${item.roundLabel} ${outputLabel(item)}`;
   elements.modalTitle.textContent = item.title;
   elements.modalMeta.innerHTML = meta.tags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("");
   elements.modalPrompt.textContent = item.prompt;
-  elements.modalPromptLength.textContent = `${item.prompt.length} 字`;
+  elements.modalPromptLength.textContent = `${item.prompt.length} 字符`;
   elements.promptModal.classList.add("is-open");
   elements.promptModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
-  elements.promptModal.querySelector(".modal-close").focus();
+  updateOverlayCounter("prompt", item);
+  if (!options.keepFocus) {
+    elements.promptModal.querySelector(".modal-close").focus();
+  }
 }
 
 function closePrompt() {
@@ -353,8 +363,11 @@ function closePrompt() {
   state.activeItem = null;
 }
 
-function openLightbox(item) {
-  state.lastFocusedElement = document.activeElement;
+function openLightbox(item, options = {}) {
+  state.lightboxItem = item;
+  if (!options.keepFocus) {
+    state.lastFocusedElement = document.activeElement;
+  }
   const token = ++lightboxImageToken;
   const thumbUrl = getThumbnailUrl(item.image);
   const detailUrl = getDetailUrl(item.image);
@@ -382,16 +395,63 @@ function openLightbox(item) {
   elements.lightbox.classList.add("is-open");
   elements.lightbox.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
-  elements.lightbox.querySelector(".lightbox-close").focus();
+  updateOverlayCounter("lightbox", item);
+  if (!options.keepFocus) {
+    elements.lightbox.querySelector(".lightbox-close").focus();
+  }
 }
 
 function closeLightbox() {
+  state.lightboxItem = null;
   lightboxImageToken++;
   elements.lightbox.classList.remove("is-open");
   elements.lightbox.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
   if (state.lastFocusedElement && typeof state.lastFocusedElement.focus === "function") {
     state.lastFocusedElement.focus();
+  }
+}
+
+function steppableItems(current) {
+  const visible = getVisibleItems();
+  if (visible.some((item) => item.id === current.id)) return visible;
+  return experiments;
+}
+
+function updateOverlayCounter(kind, item) {
+  const list = steppableItems(item);
+  const index = list.findIndex((entry) => entry.id === item.id);
+  const text = index === -1 ? "" : `第 ${index + 1} 张，共 ${list.length} 张`;
+  if (kind === "lightbox") {
+    elements.lightboxCounter.textContent = text;
+  } else {
+    elements.modalCounter.textContent = text;
+  }
+}
+
+function stepVisible(delta, kind) {
+  const current = kind === "lightbox" ? state.lightboxItem : state.activeItem;
+  if (!current) return;
+  const list = steppableItems(current);
+  if (list.length <= 1) return;
+  const index = list.findIndex((item) => item.id === current.id);
+  if (index === -1) return;
+  const next = list[(index + delta + list.length) % list.length];
+  if (kind === "lightbox") openLightbox(next, { keepFocus: true });
+  else openPrompt(next, { keepFocus: true });
+}
+
+function trapTab(event, container) {
+  const focusable = [...container.querySelectorAll("button:not([disabled]), [href], input, [tabindex]:not([tabindex=\"-1\"])")];
+  if (focusable.length === 0) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
   }
 }
 
@@ -410,12 +470,16 @@ function handleAction(action, item) {
     copyTemplate();
     return;
   }
-  if (!item && action !== "close-modal" && action !== "close-lightbox") return;
+  if (!item && action !== "close-modal" && action !== "close-lightbox" && action !== "prev-prompt" && action !== "next-prompt" && action !== "prev-lightbox" && action !== "next-lightbox") return;
   if (action === "prompt") openPrompt(item);
   if (action === "copy") copyPrompt(item);
   if (action === "image") openLightbox(item);
   if (action === "close-modal") closePrompt();
   if (action === "close-lightbox") closeLightbox();
+  if (action === "prev-prompt") stepVisible(-1, "prompt");
+  if (action === "next-prompt") stepVisible(1, "prompt");
+  if (action === "prev-lightbox") stepVisible(-1, "lightbox");
+  if (action === "next-lightbox") stepVisible(1, "lightbox");
 }
 
 document.addEventListener("click", (event) => {
@@ -458,6 +522,26 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     if (elements.promptModal.classList.contains("is-open")) closePrompt();
     if (elements.lightbox.classList.contains("is-open")) closeLightbox();
+  }
+
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    const delta = event.key === "ArrowLeft" ? -1 : 1;
+    if (elements.promptModal.classList.contains("is-open")) {
+      event.preventDefault();
+      stepVisible(delta, "prompt");
+    } else if (elements.lightbox.classList.contains("is-open")) {
+      event.preventDefault();
+      stepVisible(delta, "lightbox");
+    }
+  }
+
+  if (event.key === "Tab") {
+    const openDialog = elements.promptModal.classList.contains("is-open")
+      ? elements.promptModal
+      : elements.lightbox.classList.contains("is-open")
+        ? elements.lightbox
+        : null;
+    if (openDialog) trapTab(event, openDialog);
   }
 });
 
