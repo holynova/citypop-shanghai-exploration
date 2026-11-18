@@ -1,69 +1,70 @@
-<p align="right">
-  <strong>简体中文</strong> · <a href="./README.en.md">English</a>
+<p align="right"><a href="README.en.md">English</a></p>
+
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="Shanghai Afterglow · 城市晚霞版画档案 — 把昭和 City Pop 画进上海与北京；右侧是条纹落日与陆家嘴天际线剪影">
 </p>
 
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="Shanghai Afterglow · 城市晚霞版画档案 - City Pop Shanghai & Beijing Exploration">
+  <a href="https://xiaosang.cc/citypop-shanghai-exploration/">▶ 在线体验</a>
+  ·
+  <a href="https://github.com/holynova/citypop-shanghai-exploration">GitHub 仓库</a>
+</p>
+
+Shanghai Afterglow 是一份 City Pop 绘画提示词实验档案：以上海与北京为母体，用 80 年代昭和 City Pop 的视觉语言——晚霞渐变、粗颗粒网点、反光水面与城市地标剪影——做了 6 轮、46 幅画的提示词实验。每幅画都保留完整的结构化提示词、标签与三色色板，点开即可一键复制；第六轮还把三张参考图的共同规律拆成了一份可复用的英文提示词模板。
+
+## 截图
+
+<p align="center">
+  <img src="./assets/readme/screenshot.png" width="100%" alt="首页：Shanghai Afterglow 大标题，右侧精选作品是杨浦大桥斜向电缆的晚霞绘画，顶栏显示 46 OUTPUTS / 45 PROMPTS">
 </p>
 
 <p align="center">
-  <a href="https://citypop-shanghai-exploration.xiaosang.cc/"><strong>🌐 在线体验 (Live Demo)</strong></a> · 
-  <a href="https://holynova.github.io/citypop-shanghai-exploration/"><strong>🚀 备选镜像 (GitHub Pages)</strong></a> · 
-  <a href="https://github.com/holynova/citypop-shanghai-exploration"><strong>📦 GitHub 源码</strong></a> · 
-  <a href="https://xiaosang.cc/"><strong>✨ 更多作品集</strong></a>
+  <img src="./assets/readme/screenshot-wall.png" width="100%" alt="作品墙：第 01 轮基准探索，三幅外滩陆家嘴晚霞画并排，各带标题、标签与提示词、复制按钮；顶部是六轮筛选条">
 </p>
 
----
+## 六轮探索
 
-## 真实预览 (Proof of Work)
+| 轮次 | 主题 | 幅数 |
+|---|---|---|
+| 01 / 基准探索 | 同一机位、同一地标，把 City Pop 拆成空气喷绘、专色印刷、几何平涂、夜间漆彩等十种形式假设 | 10 |
+| 02 / 粗粝变量 | 椰子树、敞篷车、点状灯火、粗笔触，把外滩拉向海岸度假海报 | 7 |
+| 03 / 规律吸收 | 吸收前两轮的有效变量 | 3 |
+| 04 / 局部取景 | 回到上海的局部机位 | 6 |
+| 05 / 北京局部 | 同一套绘画语法换到北京：银杏、胡同、红墙 | 10 |
+| 06 / 参考规律 | 把三张参考图的共同规律拆成模板，再回到上海的十个局部机位 | 10 |
 
-<p align="center">
-  <img src="./assets/readme/screenshot.png" width="100%" alt="Shanghai Afterglow · 城市晚霞版画档案 实际运行效果截图">
-</p>
+共 46 幅作品（上海 36、北京 10），45 条提示词。
 
----
+## 功能
 
-## 项目简介 (What It Is)
+- **按轮筛选与搜索**：六轮筛选条 + 标题/关键词搜索。
+- **提示词弹窗**：点开任意作品看大图与完整提示词，支持上一张/下一张切换，一键复制。
+- **每画三色板**：每幅作品附三个代表色。
+- **可复用模板**：第六轮沉淀的英文提示词模板（构图、色板、笔触、负向词），一键复制。
+- **图片灯箱**：全屏查看原图。
 
-以上海与北京为母体的 80 年代经典 City Pop 绘画研究档案。收录 46 张高质量粗颗粒版画插画作品与 45 条严谨测试的结构化提示词。深入拆解永井博、铃木英人流派的核心视觉密码：热带棕榈与城市地标剪影、有限色渐变晚霞、粗颗粒网点及反光玻璃水面。
+## 本地运行
 
----
-
-## 核心机制与特色 (Why It Matters)
-
-- **有限色晚霞色板**：锁定 5 种核心昭和 City Pop 标志性色相：晚霞粉紫、暮光深靛、热带薄荷青、暖金与墨夜。
-- **平版粗颗粒质感复现**：提示词深度调校颗粒度参数，模拟 80 年代日本胶印海报与黑胶唱片封套的物理纸感。
-- **建筑地标符号融合**：把陆家嘴天际线、北京国贸、老洋房林荫道等现代城市机位自然融入昭和度假美学。
-- **一键复制结构化 Prompt**：提供开箱即用的参数化提示词模板，包含机位、光源、调色盘与负向词库。
-
----
-
-## 收录清单与规格 (Inventory & Scope)
-
-46 幅全尺寸 City Pop 风格画作、45 条中英结构化提示词、色板配比分析、双模型画质实测对比。
-
----
-
-## 快速开始 (Quick Start)
-
-### 1. 在线体验
-无需安装任何环境，直接在浏览器中打开：
-- 🌐 **主站演示 (Primary)**：[https://citypop-shanghai-exploration.xiaosang.cc/](https://citypop-shanghai-exploration.xiaosang.cc/)
-- 🚀 **备选镜像 (GitHub Pages)**：[https://holynova.github.io/citypop-shanghai-exploration/](https://holynova.github.io/citypop-shanghai-exploration/)
-
-### 2. 本地运行与调试
-克隆仓库后执行以下命令：
+纯静态站，零构建：
 
 ```bash
-git clone https://github.com/holynova/citypop-shanghai-exploration.git
-cd citypop-shanghai-exploration
-npm run serve # or any static server
+python3 -m http.server 4174 --bind 127.0.0.1
+# 打开 http://127.0.0.1:4174
 ```
 
----
+或直接用浏览器打开 `index.html`。语法检查：`npm run check`（`node --check app.js && node --check data.js`）。
 
-## 开源协议与作者 (License & Author)
+## 技术
 
-- **作者**：[holynova (小桑)](https://xiaosang.cc/)
-- **授权协议**：[MIT License](./LICENSE)
-- **合辑收录**：本仓库作为精选项目收录于 [Where Craft Lives (xiaosang.cc)](https://xiaosang.cc/)。
+- 纯 HTML + CSS + JS，零依赖、零构建；数据与展示分离（`data.js` 存 46 条实验记录，`app.js` 渲染）。
+- 图片三档：原图 `images/`、缩略图 `images/thumbs/`（JPG）与 `images/thumbs-webp/`（WebP，`<picture>` 首选），详情图 `images/detail-webp/`。
+- 提示词另存为 5 份 JSON：`prompts.json`、`prompts_round2.json`、`prompts_round3.json`、`prompts_round4.json`、`prompts_round5_beijing.json`。
+
+```
+index.html          入口：首页、作品墙、模板区、弹窗、灯箱
+styles.css          深蓝底 + 珊瑚晚霞配色
+app.js              渲染、筛选、搜索、复制、弹窗、灯箱
+data.js             46 条实验记录：标题、提示词、图片、轮次
+prompts*.json       5 份结构化提示词文件
+images/             原图、缩略图（JPG/WebP）、详情图
+```

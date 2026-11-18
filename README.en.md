@@ -1,69 +1,70 @@
-<p align="right">
-  <a href="./README.md">简体中文</a> · <strong>English</strong>
+<p align="right"><a href="README.md">中文</a></p>
+
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="Shanghai Afterglow — a City Pop print archive painting Showa-era City Pop into Shanghai and Beijing; a striped sunset and the Lujiazui skyline silhouette on the right">
 </p>
 
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="City Pop Shanghai & Beijing Exploration">
+  <a href="https://xiaosang.cc/citypop-shanghai-exploration/">▶ View Online</a>
+  ·
+  <a href="https://github.com/holynova/citypop-shanghai-exploration">GitHub Repository</a>
+</p>
+
+Shanghai Afterglow is a City Pop painting prompt archive: six rounds of prompt experiments (46 artworks) translating 1980s Showa-era City Pop visuals — sunset gradients, rough-grain halftone, reflective water and city skylines — onto Shanghai and Beijing. Every artwork keeps its full structured prompt, tags and three-color palette, copyable with one click; round 6 distills the shared rules of three reference images into a reusable English prompt template.
+
+## Screenshots
+
+<p align="center">
+  <img src="./assets/readme/screenshot.png" width="100%" alt="Homepage: the Shanghai Afterglow title, with a featured sunset painting of the Yangpu Bridge's diagonal cables on the right; the header shows 46 OUTPUTS / 45 PROMPTS">
 </p>
 
 <p align="center">
-  <a href="https://citypop-shanghai-exploration.xiaosang.cc/"><strong>🌐 Live Demo (Primary)</strong></a> · 
-  <a href="https://holynova.github.io/citypop-shanghai-exploration/"><strong>🚀 Mirror (GitHub Pages)</strong></a> · 
-  <a href="https://github.com/holynova/citypop-shanghai-exploration"><strong>📦 GitHub Source</strong></a> · 
-  <a href="https://xiaosang.cc/"><strong>✨ Portfolio</strong></a>
+  <img src="./assets/readme/screenshot-wall.png" width="100%" alt="Artwork wall: round 01 baseline exploration, three sunset paintings of the Bund and Lujiazui side by side, each with title, tags, prompt and a copy button; a six-round filter bar on top">
 </p>
 
----
+## Six Rounds
 
-## Proof of Work
+| Round | Theme | Works |
+|---|---|---|
+| 01 / 基准探索 Baseline | Same camera position, same landmark — City Pop broken into ten formal hypotheses: airbrush, spot-color print, geometric flat color, night lacquer, and more | 10 |
+| 02 / 粗粝变量 Rough Variables | Palm trees, convertibles, dotted lights, rough brushwork — pulling the Bund toward a coastal resort poster | 7 |
+| 03 / 规律吸收 Pattern Absorption | Absorbing the effective variables from the first two rounds | 3 |
+| 04 / 局部取景 Local Framing | Back to local camera positions around Shanghai | 6 |
+| 05 / 北京局部 Beijing Local | The same visual grammar moved to Beijing: ginkgo, hutongs, red walls | 10 |
+| 06 / 参考规律 Reference Rules | The shared rules of three reference images distilled into a template, then back to ten local Shanghai positions | 10 |
 
-<p align="center">
-  <img src="./assets/readme/screenshot.png" width="100%" alt="City Pop Shanghai & Beijing Exploration Live Interface Screenshot">
-</p>
+46 artworks in total (Shanghai 36, Beijing 10), 45 prompts.
 
----
+## Features
 
-## What It Is
+- **Filter by round, search by keyword**: a six-round filter bar plus title/keyword search.
+- **Prompt popup**: click any artwork to see it large with its full prompt, flip to the previous/next piece, and copy in one click.
+- **Three-color palette per artwork**: every piece carries three representative colors.
+- **Reusable template**: the English prompt template distilled in round 6 (composition, palette, brushwork, negative prompts), copyable in one click.
+- **Image lightbox**: view the original image fullscreen.
 
-An architectural visual archive fusing 80s Japanese City Pop with urban landmarks of Shanghai and Beijing. Features 46 high-res rough-grain prints and 45 verified structured prompts. Deconstructs the timeless aesthetics of Hiroshi Nagai and Eizin Suzuki: tropical palm and skyscraper silhouettes, limited palette sunset gradients, screen-print halftone dots, and gleaming reflective waters.
+## Run Locally
 
----
-
-## Why It Matters (Key Features)
-
-- **5-Tone Limited Sunset Palette**: Locked into signature Showa City Pop hues: magenta twilight, deep indigo, resort cyan, warm amber, and midnight black.
-- **Rough-Grain Lithograph Emulation**: Engineered prompt parameters evoking physical offset print posters and vinyl album jacket textures.
-- **Urban Landmark Iconography**: Seamlessly integrates Shanghai Lujiazui skyline, Beijing CBD, and classic villas into resort aesthetics.
-- **Bilingual Structured Prompts**: Turnkey prompt formulas containing camera perspectives, lighting vectors, and color grading recipes.
-
----
-
-## Inventory & Scope
-
-46 full-sized City Pop illustrations, 45 bilingual structured prompts, palette formulas, and dual-model fidelity analysis.
-
----
-
-## Quick Start
-
-### 1. Live Demos
-Experience it directly in your browser without any setup:
-- 🌐 **Primary Demo**: [https://citypop-shanghai-exploration.xiaosang.cc/](https://citypop-shanghai-exploration.xiaosang.cc/)
-- 🚀 **Alternative Mirror (GitHub Pages)**: [https://holynova.github.io/citypop-shanghai-exploration/](https://holynova.github.io/citypop-shanghai-exploration/)
-
-### 2. Local Development
-Clone the repository and launch locally:
+A pure static site, no build step:
 
 ```bash
-git clone https://github.com/holynova/citypop-shanghai-exploration.git
-cd citypop-shanghai-exploration
-npm run serve # or any static server
+python3 -m http.server 4174 --bind 127.0.0.1
+# Open http://127.0.0.1:4174
 ```
 
----
+Or just open `index.html` in a browser. Syntax check: `npm run check` (`node --check app.js && node --check data.js`).
 
-## License & Author
+## Tech
 
-- **Author**: [holynova (Xiaosang)](https://xiaosang.cc/)
-- **License**: [MIT License](./LICENSE)
-- **Featured Collection**: Curated as part of [Where Craft Lives (xiaosang.cc)](https://xiaosang.cc/).
+- Pure HTML + CSS + JS, zero dependencies, zero build; data and presentation are separate (`data.js` holds the 46 experiment records, `app.js` renders them).
+- Images in three tiers: originals in `images/`, thumbnails in `images/thumbs/` (JPG) and `images/thumbs-webp/` (WebP, preferred via `<picture>`), detail images in `images/detail-webp/`.
+- Prompts are also saved as 5 JSON files: `prompts.json`, `prompts_round2.json`, `prompts_round3.json`, `prompts_round4.json`, `prompts_round5_beijing.json`.
+
+```
+index.html          Entry: homepage, artwork wall, template section, popup, lightbox
+styles.css          Deep-blue background + coral sunset palette
+app.js              Rendering, filtering, search, copy, popup, lightbox
+data.js             46 experiment records: title, prompt, image, round
+prompts*.json       5 structured prompt files
+images/             Originals, thumbnails (JPG/WebP), detail images
+```
